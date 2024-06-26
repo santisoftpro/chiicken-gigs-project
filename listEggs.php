@@ -98,15 +98,16 @@ if(isset($_GET['del'])){
                   <thead>
                     <tr>
                       <th class="text-center">No</th>
-                      <th>Category</th>
-                      <th class="text-center">Category Code</th>
-                      <th class="text-center">Posting Date</th>
+                      <th>Name</th>
+                      <th class="text-center">Quantity</th>
+                      <th class="text-center">price</th>
+                      <th class="text-center">Total</th>
                       <th class=" Text-center" style="width: 15%;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $sql="SELECT tblcategory.id,tblcategory.CategoryName,tblcategory.CategoryCode,tblcategory.PostingDate from tblcategory ORDER BY id DESC";
+                    $sql="SELECT * FROM `eggs`";
                     $query = $dbh -> prepare($sql);
                     $query->execute();
                     $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -118,12 +119,13 @@ if(isset($_GET['del'])){
                         ?>
                         <tr>
                           <td class="text-center"><?php echo htmlentities($cnt);?></td>
-                          <td class=""><a href="#"class=" edit_data5" id="<?php echo  ($row->id); ?>" ><?php  echo htmlentities($row->CategoryName);?></a></td>
-                          <td class="text-center"><?php  echo htmlentities($row->CategoryCode);?></td>
-                          <td class="text-center"><?php  echo htmlentities(date("d-m-Y", strtotime($row->PostingDate)));?></td>
-                          <td class=" text-center"><a href="#"  class=" edit_data4" id="<?php echo  ($row->id); ?>" title="click to edit"><i class="mdi mdi-pencil-box-outline" aria-hidden="true"></i></a>
-                            <a href="#"  class=" edit_data5" id="<?php echo  ($row->id); ?>" title="click to view">&nbsp;<i class="mdi mdi-eye" aria-hidden="true"></i></a>
-                            <a href="category.php?del=<?php echo $row->id;?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="mdi mdi-delete"></i> </a>
+                          <td class=""><a href="#"class=" edit_data5" id="<?php echo  ($row->eggs_id); ?>" ><?php  echo htmlentities($row->name);?></a></td>
+                          <td class="text-center"><?php  echo htmlentities($row->quantity);?></td>
+                          <td class="text-center"><?php  echo htmlentities($row->price);?></td>
+                          <td class="text-center"><?php  echo htmlentities($row->price) * $row->quantity;?></td>
+                          <td class=" text-center"><a href="#"  class=" edit_data4" id="<?php echo  ($row->eggs_id); ?>" title="click to edit"><i class="mdi mdi-pencil-box-outline" aria-hidden="true"></i></a>
+                            <a href="#"  class=" edit_data5" id="<?php echo  ($row->eggs_id); ?>" title="click to view">&nbsp;<i class="mdi mdi-eye" aria-hidden="true"></i></a>
+                            <a href="category.php?del=<?php echo $row->eggs_id;?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="mdi mdi-delete"></i> </a>
                           </td>
                         </tr>
                         <?php 
