@@ -98,17 +98,15 @@ if(isset($_GET['del'])){
                   <thead>
                     <tr>
                       <th class="text-center">No</th>
-                      <th>Chicken Name</th>
-                      <th class="text-center">Type</th>
-                      <th class="text-center">DOB</th>
-                      <th class="text-center">Category</th>
-                      <th class="text-center">Quantity</th>
+                      <th>Category</th>
+                      <th class="text-center">Category Code</th>
+                      <th class="text-center">Posting Date</th>
                       <th class=" Text-center" style="width: 15%;">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $sql="SELECT * FROM `chicken` WHERE 1";
+                    $sql="SELECT tblcategory.id,tblcategory.CategoryName,tblcategory.CategoryCode,tblcategory.PostingDate from tblcategory ORDER BY id DESC";
                     $query = $dbh -> prepare($sql);
                     $query->execute();
                     $results=$query->fetchAll(PDO::FETCH_OBJ);

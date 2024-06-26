@@ -3,25 +3,23 @@ include('includes/checklogin.php');
 check_login();
 if(isset($_POST['submit']))
 {
-    $companyemail=$_POST['companyemail'];
-    $companyname=$_POST['companyname'];
-    $companyaddress=$_POST['companyaddress'];
-    $regno=$_POST['regno'];
-    $country=$_POST['country'];
-    $mobno=$_POST['mobilenumber'];
-    $sql="update tblcompany set companyaddress=:companyaddress,companyname=:companyname,companyemail=:companyemail,regno=:regno,companyphone=:mobilenumber,country=:country";
+    $chickenName=$_POST['chickenName'];
+    $types=$_POST['types'];
+    $dob=$_POST['dob'];
+    $category=$_POST['category'];
+    $quantity=$_POST['quantity'];
+    $sql="INSERT INTO `chicken`(`chickenName`, `chickenType`, `dob`, `category`, `quantity`) VALUES (:chickenName, :types, :dob, :category, :quantity)";
     $query = $dbh->prepare($sql);
-    $query->bindParam(':companyaddress',$companyaddress,PDO::PARAM_STR);
-    $query->bindParam(':companyemail',$companyemail,PDO::PARAM_STR);
-    $query->bindParam(':regno',$regno,PDO::PARAM_STR);
-    $query->bindParam(':country',$country,PDO::PARAM_STR);
-    $query->bindParam(':mobilenumber',$mobno,PDO::PARAM_STR);
-    $query->bindParam(':companyname',$companyname,PDO::PARAM_STR);
+    $query->bindParam(':chickenName',$chickenName,PDO::PARAM_STR);
+    $query->bindParam(':types',$types,PDO::PARAM_STR);
+    $query->bindParam(':dob',$dob,PDO::PARAM_STR);
+    $query->bindParam(':category',$category,PDO::PARAM_STR);
+    $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
     $query->execute();
     if ($query->execute()){
-        echo '<script>alert("Profile has been updated")</script>';
+        echo '<script>alert("Chicken has been Added successfully")</script>';
     }else{
-        echo '<script>alert("update failed! try again later")</script>';
+        echo '<script>alert("Chicken failed! try again later")</script>';
     }
 }
 ?>
@@ -48,17 +46,7 @@ if(isset($_POST['submit']))
                                 </div>
 
                                 <div class="card-body">
-                                    <?php
-                                    $sql="SELECT * from  tblcompany ";
-                                    $query = $dbh -> prepare($sql);
-                                    $query->execute();
-                                    $results=$query->fetchAll(PDO::FETCH_OBJ);
-                                    $cnt=1;
-                                    if($query->rowCount() > 0)
-                                    {
-                                        foreach($results as $row)
-                                        {  
-                                            ?>
+                             
                                             <form method="post">
                                                
                                                 <div>&nbsp;</div>
@@ -66,13 +54,13 @@ if(isset($_POST['submit']))
                                                     <div class="form-group row col-md-6">
                                                         <label class="col-12" for="register1-username">Chicken name:</label>
                                                         <div class="col-12">
-                                                            <input type="text" class="form-control" name="companyname" value="" >
+                                                            <input type="text" class="form-control" name="chickenName" placeholder="Chicken Name" >
                                                         </div>
                                                     </div>
                                                     <div class="form-group row col-md-6">
                                                         <label class="col-12" for="register1-email">Chicken Type:</label>
                                                         <div class="col-12">
-                                                            <input type="text" class="form-control" name="regno" value="<?php  echo $row->regno;?>" required='true'  >
+                                                            <input type="text" class="form-control" name="types" placeholder="Chicken Type" required='true'  >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -81,36 +69,31 @@ if(isset($_POST['submit']))
                                                       <label class="col-12" for="register1-email">Birthdate:
                                                       </label>
                                                       <div class="col-12">
-                                                        <input type="text" class="form-control" name="companyaddress" value="" placeholder="Enter company address" required='true'  >
+                                                        <input type="date" class="form-control" name="dob" value="" placeholder="Date of Birtth" required='true'  >
                                                     </div>
                                                 </div>
                                                 <div class="form-group row col-md-6">
-                                                    <label class="col-12" for="register1-email">Company email:</label>
+                                                    <label class="col-12" for="register1-email">Chicken Category:</label>
                                                     <div class="col-12">
-                                                        <input type="text" class="form-control" name="companyemail" value="<?php  echo $row->companyemail;?>" required='true' >
+                                                        <input type="text" class="form-control" name="category" placeholder="Chicken Category" required='true' >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row"> 
                                                 <div class="form-group row col-md-6">
-                                                    <label class="col-12" for="register1-password">country:</label>
+                                                    <label class="col-12" for="register1-password">Quantity:</label>
                                                     <div class="col-12">
-                                                        <input type="text" class="form-control" name="country" value="<?php  echo $row->country;?>" required='true' >
+                                                        <input type="number" class="form-control" name="quantity" placeholder="Chicken Quantity" required='true' >
                                                     </div>
                                                 </div>
-                                                <div class="form-group row col-md-6">
-                                                    <label class="col-12" for="register1-password">Contact Number:</label>
-                                                    <div class="col-12">
-                                                        <input type="text" class="form-control" name="mobilenumber" value="0<?php  echo $row->companyphone;?>" required='true' placeholder="Enter company contact no" maxlength='10'>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
 
-                                            <?php 
-                                        }
-                                    } ?>
+                                           
                                     <br>
-                                    <button type="submit" name="submit" class="btn btn-primary btn-fw mr-2" style="float: left;">update</button>
+                                    <button type="submit" name="submit" class="btn btn-primary btn-fw mr-2" style="float: left;">Save Checken</button>
+                                    
+                                    <a href="listChicken.php" class="btn btn-primary btn-fw mr-2" style="float: left;">Close</a>
                                 </form>
                             </div>
                         </div>
