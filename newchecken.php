@@ -15,7 +15,6 @@ if(isset($_POST['submit']))
     $query->bindParam(':dob',$dob,PDO::PARAM_STR);
     $query->bindParam(':category',$category,PDO::PARAM_STR);
     $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
-    $query->execute();
     if ($query->execute()){
         echo '<script>alert("Chicken has been Added successfully")</script>';
     }else{
