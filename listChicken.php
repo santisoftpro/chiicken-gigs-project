@@ -23,9 +23,9 @@ if(isset($_POST['save']))
 }
 if(isset($_GET['del'])){    
     $cmpid=$_GET['del'];
-    $query=mysqli_query($con,"DELETE FROM tblcategory WHERE id='$cmpid'");
-    echo "<script>alert('Category record deleted.');</script>";   
-    echo "<script>window.location.href='category.php'</script>";
+    $query=mysqli_query($con,"DELETE FROM chicken WHERE chicken_id='$cmpid'");
+    echo "<script>alert('Chicken record deleted.');</script>";   
+    echo "<script>window.location.href='listChicken.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -137,7 +137,7 @@ if(isset($_GET['del'])){
                                                         <td class="text-center">
                                                             <a href="#" class="edit_data4" id="<?php echo htmlentities($row->chicken_id); ?>" title="click to edit"><i class="mdi mdi-pencil-box-outline" aria-hidden="true"></i></a>
                                                             <a href="#" class="edit_data5" id="<?php echo htmlentities($row->chicken_id); ?>" title="click to view">&nbsp;<i class="mdi mdi-eye" aria-hidden="true"></i></a>
-                                                            <a href="category.php?del=<?php echo $row->id;?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="mdi mdi-delete"></i> </a>
+                                                            <a href="listChicken.php?del=<?php echo $row->id;?>" data-toggle="tooltip" data-original-title="Delete" onclick="return confirm('Do you really want to delete?');"> <i class="mdi mdi-delete"></i> </a>
                                                         </td>
                                                     </tr>
                                                     <?php 
@@ -168,7 +168,7 @@ if(isset($_GET['del'])){
         $(document).on('click','.edit_data4',function(){
             var edit_id4=$(this).attr('id');
             $.ajax({
-                url:"edit_category.php",
+                url:"edit_chicken.php",
                 type:"post",
                 data:{edit_id4:edit_id4},
                 success:function(data){
@@ -184,7 +184,7 @@ if(isset($_GET['del'])){
         $(document).on('click','.edit_data5',function(){
             var edit_id5=$(this).attr('id');
             $.ajax({
-                url:"view_category.php",
+                url:"view_chicken.php",
                 type:"post",
                 data:{edit_id5:edit_id5},
                 success:function(data){

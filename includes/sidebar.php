@@ -58,12 +58,12 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#chicken" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Chicken</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-archive menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="chicken">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="newchecken.php">New Chicken</a></li>
                     <li class="nav-item"> <a class="nav-link" href="listChicken.php">Manage Chicken</a></li>
@@ -71,12 +71,12 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#eggs" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Eggs</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-archive menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="eggs">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="newEggs.php">New Eggs</a></li>
                     <li class="nav-item"> <a class="nav-link" href="listEggs.php">Manage Eggs</a></li>
@@ -84,12 +84,12 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#companymanagement" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#child" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Children management</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-archive menu-icon"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="child">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="child.php">Add Child</a></li>
                     <li class="nav-item"> <a class="nav-link" href="manage-child.php">Manage Children</a></li>

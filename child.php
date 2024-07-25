@@ -1,14 +1,19 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include('includes/checklogin.php');
 check_login();
 if(isset($_POST['submit']))
 {
-    $chickenName=$_POST['chickenName'];
+    $childName=$_POST['childName'];
     $location=$_POST['location'];
     $status=$_POST['status'];
-    $sql="INSERT INTO `child`(`childName`, `location`, `status`) VALUES ('$childname','$location','$status')";
+    $sql="INSERT INTO `child`(`childName`, `location`, `status`) VALUES (:childName, :location, :status)";
     $query = $dbh->prepare($sql);
-    $query->bindParam(':chickenName',$chickenName,PDO::PARAM_STR);
+    $query->bindParam(':childName',$childName,PDO::PARAM_STR);
     $query->bindParam(':location',$location,PDO::PARAM_STR);
     $query->bindParam(':status',$status,PDO::PARAM_STR);
     if ($query->execute()){
@@ -49,7 +54,7 @@ if(isset($_POST['submit']))
                                                     <div class="form-group row col-md-6">
                                                         <label class="col-12" for="register1-username">Child name:</label>
                                                         <div class="col-12">
-                                                            <input type="text" class="form-control" name="chickenName" placeholder="Chicken Name" >
+                                                            <input type="text" class="form-control" name="childName" placeholder="Child Name" >
                                                         </div>
                                                     </div>
                                                     <div class="form-group row col-md-6">
@@ -65,9 +70,9 @@ if(isset($_POST['submit']))
                                                       </label>
                                                       <div class="col-12">
                                                         <select name="status" class="form-control" required='true'>
-                                                            <option value="">Healthy</option>
-                                                            <option value="">Mederate</option>
-                                                            <option value="">Improvement</option>
+                                                            <option value="Healthy">Healthy</option>
+                                                            <option value="Mederate">Mederate</option>
+                                                            <option value="Improvement">Improvement</option>
                                                         </select>
                                                         
                                                     </div>
